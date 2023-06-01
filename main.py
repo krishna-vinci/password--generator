@@ -4,8 +4,6 @@ import string
 import pandas as pd
 import os
 import base64
-
-
 # Function to download data as csv
 def get_csv_download_link(df, filename):
     csv = df.to_csv(index=False)
@@ -63,13 +61,10 @@ upper = st.number_input('Enter the number of uppercase letters', min_value=0, ma
 lower = st.number_input('Enter the number of lowercase letters', min_value=0, max_value=100, value=2)
 special_chars = st.text_input('Enter the special characters you want to include')
 
-
 if st.button('Generate Password'):
     password = generate_password(length, upper, lower, special_chars)
-    st.text_area("Your password is:", value=password)  # User can manually copy from here
-    ...
-    
-
+    st.text_input("Your password is:", value=password, type="password")
+    st.text("Auto saved to clipboard")
 
     # Save password to CSV
     df = pd.DataFrame({'Website': [website], 'Password': [password]})
@@ -81,6 +76,6 @@ if st.button('Generate Password'):
     # Download link
     st.markdown(get_csv_download_link(df, 'password.csv'), unsafe_allow_html=True)
 
-  
-
     
+
+    st.success("Done")
