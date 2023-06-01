@@ -63,7 +63,7 @@ special_chars = st.text_input('Enter the special characters you want to include'
 if st.button('Generate Password'):
     password = generate_password(length, upper, lower, special_chars)
     st.text_input("Your password is:", value=password, type="password")
-    st.text("Auto saved to clipboard")
+    st.text("manual copy")
 
     # Save password to CSV
     df = pd.DataFrame({'Website': [website], 'Password': [password]})
