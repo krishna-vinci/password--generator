@@ -51,9 +51,8 @@ st.text('''
 ''')
 st.title("Password Generator")
 st.text('''Note: 
-1. It Will auto save to clipboard
-2. You can download CSV at the end
-3. It will add random upper or lowercase letters to reach the maximum password length''')
+1. You can download CSV at the end
+2. It will add random upper or lowercase letters to reach the maximum password length''')
 
 website = st.text_input('Enter the name of the website/service')
 length = st.number_input('Enter the maximum length of the password', min_value=1, max_value=100, value=8)
