@@ -58,7 +58,10 @@ st.text('''
 st.title("Password Generator")
 st.text('''Note: 
 1. You can download CSV at the end
-2. It will add random upper, lower or numeric characters to reach the maximum password length''')
+2. It will add random upper, lower or numeric characters 
+to reach the maximum password length
+3. This is just python script hosting
+Github link:  https://github.com/krishna-vinci/password--generator ''')
 
 website = st.text_input('Enter the name of the website/service')
 length = st.number_input('Enter the maximum length of the password', min_value=1, max_value=100, value=8)
