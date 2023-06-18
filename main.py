@@ -46,10 +46,7 @@ def generate_password(length, upper, lower, numeric, special_chars):
 
 
 
-st.text('''Note: 
-1. You can download CSV at the end 2. It will add random upper, lower or numeric characters to reach the maximum password length
 
-''')
 
 website = st.text_input('Enter the name of the website/service')
 length = st.number_input('Enter the maximum length of the password', min_value=1, max_value=100, value=8)
@@ -74,4 +71,9 @@ if st.button('Generate Password'):
     st.markdown(get_csv_download_link(df, 'password.csv'), unsafe_allow_html=True)
 
     st.success("Done")
+
+st.text('''Note: 
+1. You can download CSV at the end 2. It will add random upper, lower or numeric characters to reach the maximum password length
+
+''')
 
