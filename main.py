@@ -57,12 +57,9 @@ st.text('''
 ''')
 st.title("Password Generator")
 
-st.markdown("[Visit GitHub Repository](https://github.com/krishna-vinci/password--generator)")
 
 st.text('''Note: 
-1. You can download CSV at the end
-2. It will add random upper, lower or numeric characters 
-to reach the maximum password length
+1. You can download CSV at the end 2. It will add random upper, lower or numeric characters to reach the maximum password length
 
 ''')
 
