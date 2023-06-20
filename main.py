@@ -11,7 +11,7 @@ def get_csv_download_link(df, filename):
     b64 = base64.b64encode(csv.encode()).decode()
     return f'<a href="data:file/csv;base64,{b64}" download="{filename}">Download CSV file</a>'
 
-def generate_password(length, upper, lower, special_chars, digits):
+def generate_password(length, upper, lower, special_chars, digits):  # add digits as a parameter
     password = []
 
     # Add uppercase letters
@@ -27,7 +27,7 @@ def generate_password(length, upper, lower, special_chars, digits):
 
     # Add digits
     for _ in range(digits):
-        password.append(random.choice(string.digits))
+        password.append(random.choice(string.digits))  # string.digits contains all digits 0-9
 
     # If the password is shorter than the desired length, add random characters
     while len(password) < length:
@@ -46,36 +46,30 @@ def generate_password(length, upper, lower, special_chars, digits):
 
 number_of_passwords = st.sidebar.slider("How many passwords do you want to generate?", 1, 10)
 auto_generate = st.sidebar.checkbox("Auto generate all passwords with first input parameters?")
-default_auto_generate = st.sidebar.checkbox("Default mode for auto-generation?")
 auto_name = st.sidebar.text_input("Enter prefix for auto name generation (leave blank for no auto naming):")
 
-# Default parameters for auto-generation
-default_length = 8
-default_upper = 2
-default_lower = 2
-default_special_chars = '@'
-default_digits = 2
-
-length = default_length if default_auto_generate else None
-upper = default_upper if default_auto_generate else None
-lower = default_lower if default_auto_generate else None
-special_chars = default_special_chars if default_auto_generate else None
-digits = default_digits if default_auto_generate else None
-
+length = None
+upper = None
+lower = None
+special_chars = None
+digits = None  # add this
 all_passwords = []
 
 for i in range(number_of_passwords):
-    with st.expander(f"Generate Password {i + 1}", expanded=i == 0):
+    with st.expander(f"Generate Password {i + 1}", expanded=i == 0):  # First password expander will be open by default
         website = auto_name + str(i + 1) if auto_name else st.text_input(f'Enter the name of the website/service for Password {i + 1}')
 
         if i == 0 or not auto_generate:
-            length = st.number_input(f'Enter the maximum length of the password for Password {i + 1}', min_value=1, max_value=100, value=length)
-            upper = st.number_input(f'Enter the number of uppercase letters for Password {i + 1}', min_value=0, max_value=100, value=upper)
-            lower = st.number_input(f'Enter the number of lowercase letters for Password {i + 1}', min_value=0, max_value=100, value=lower)
-            special_chars = st.text_input(f'Enter the special characters you want to include in Password {i + 1}', value=special_chars)
-            digits = st.number_input(f'Enter the number of digits for Password {i + 1}', min_value=0, max_value=100, value=digits)
+            length = st.number_input(f'Enter the maximum length of the password for Password {i + 1}', min_value=1,
+                                     max_value=100, value=8)
+            upper = st.number_input(f'Enter the number of uppercase letters for Password {i + 1}', min_value=0,
+                                    max_value=100, value=2)
+            lower = st.number_input(f'Enter the number of lowercase letters for Password {i + 1}', min_value=0,
+                                    max_value=100, value=2)
+            special_chars = st.text_input(f'Enter the special characters you want to include in Password {i + 1}')
+            digits = st.number_input(f'Enter the number of digits for Password {i + 1}', min_value=0, max_value=100, value=2)  # add this
 
-        password = generate_password(length, upper, lower, special_chars, digits)
+        password = generate_password(length, upper, lower, special_chars, digits)  # pass the digits
         all_passwords.append({'Website': website, 'Password': password})
 
 if st.button('Generate Passwords'):
